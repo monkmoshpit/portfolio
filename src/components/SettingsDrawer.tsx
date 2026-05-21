@@ -4,8 +4,8 @@ import { Sun, Moon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 
-import ptFlag from '../assets/PT.jpeg';
-import enFlag from '../assets/EN.jpeg';
+import ptFlag from '../assets/PT.webp';
+import enFlag from '../assets/EN.webp';
 
 export const SettingsDrawer = () => {
   const { language, transitioning, toggleLanguage } = useLanguage();

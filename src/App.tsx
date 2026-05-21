@@ -150,6 +150,7 @@ const AppInner = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
+          className="font-sans min-h-screen"
           style={{ backgroundColor: 'var(--bg-base)' }}
         >
           <SectionNav />

@@ -11,10 +11,10 @@ import {
   SiDocker, SiRedis, SiMysql, SiSupabase, SiPostgresql, SiOpenai, SiVite
 } from 'react-icons/si';
 
-import devImg from '../assets/dev.png';
-import multicampusImg from '../assets/multicampus.png';
-import paygateImg from '../assets/paygate.png';
-import readmeforgeImg from '../assets/readme.png';
+import devImg from '../assets/dev.webp';
+import multicampusImg from '../assets/multicampus.webp';
+import paygateImg from '../assets/paygate.webp';
+import readmeforgeImg from '../assets/readme.webp';
 
 interface ProjectModalProps {
   project: Project;

@@ -1,8 +1,8 @@
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 
-import ptFlag from '../assets/PT.jpeg';
-import enFlag from '../assets/EN.jpeg';
+import ptFlag from '../assets/PT.webp';
+import enFlag from '../assets/EN.webp';
 
 export const LanguageToggle = () => {
   const { language, toggleLanguage } = useLanguage();
