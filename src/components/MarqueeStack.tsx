@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { memo } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import {
   SiPhp, SiLaravel, SiReact, SiTypescript, SiNodedotjs, SiTailwindcss,
@@ -27,65 +27,66 @@ const allIcons = [
   { Icon: SiPrisma, name: 'Prisma' },
 ];
 
+const iconSet = allIcons.concat(allIcons);
+
 interface RowProps {
   direction: 'left' | 'right';
   faded: boolean;
 }
 
-const Row = ({ direction, faded }: RowProps) => {
-  const isLeft = direction === 'left';
+const Row = memo(function Row({ direction, faded }: RowProps) {
+  const isRight = direction === 'right';
+
   return (
-    <div className={`flex whitespace-nowrap overflow-hidden w-full py-3 ${faded ? 'opacity-40 blur-[1.5px]' : 'opacity-100'}`}>
-      <motion.div
-        className="flex whitespace-nowrap gap-14 items-center shrink-0 pr-14"
-        animate={{ x: isLeft ? ['0%', '-50%'] : ['-50%', '0%'] }}
-        transition={{ repeat: Infinity, ease: 'linear', duration: 40 }}
-      >
-        {allIcons.concat(allIcons).map(({ Icon }, i) => (
+    <div
+      className={`marquee-row flex whitespace-nowrap overflow-hidden w-full py-3 ${faded ? 'opacity-40 blur-[1.5px]' : 'opacity-100'}`}
+    >
+      <div className={`marquee-inner gap-14 items-center shrink-0 pr-14 ${isRight ? 'marquee-inner--right' : ''}`}>
+        {iconSet.map(({ Icon }, i) => (
           <div
             key={i}
-            className="relative flex items-center justify-center w-14 h-14 rounded-2xl border transition-all duration-300 group hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            className="relative flex items-center justify-center w-14 h-14 rounded-2xl border transition-colors duration-300 group hover:border-[var(--accent)] hover:text-[var(--accent)]"
             style={{
               backgroundColor: 'var(--bg-surface)',
-              borderColor:     'var(--border-subtle)',
-              color:           'var(--text-muted)',
+              borderColor: 'var(--border-subtle)',
+              color: 'var(--text-muted)',
             }}
           >
             <Icon className="w-7 h-7 transition-colors duration-300 group-hover:text-[var(--accent)]" />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
-};
+});
 
-export const MarqueeStack = () => {
+export const MarqueeStack = memo(function MarqueeStack() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const bg = isDark ? '#0c0c0e' : '#f3f4f6';
 
   return (
     <section
       className="w-full overflow-hidden border-y py-10 transition-colors duration-400"
       style={{
-        backgroundColor: isDark ? '#0c0c0e' : '#f3f4f6',
+        backgroundColor: bg,
         borderColor: 'var(--border-subtle)',
       }}
     >
       <div className="relative flex flex-col gap-4">
         <Row direction="right" faded />
-        <Row direction="left"  faded={false} />
+        <Row direction="left" faded={false} />
         <Row direction="right" faded />
 
-        {/* Edge fades */}
         <div
-          className="absolute inset-y-0 left-0 w-32 pointer-events-none z-10"
-          style={{ background: `linear-gradient(to right, ${isDark ? '#0c0c0e' : '#f3f4f6'}, transparent)` }}
+          className="absolute inset-y-0 left-0 w-16 md:w-32 pointer-events-none z-10"
+          style={{ background: `linear-gradient(to right, ${bg}, transparent)` }}
         />
         <div
-          className="absolute inset-y-0 right-0 w-32 pointer-events-none z-10"
-          style={{ background: `linear-gradient(to left, ${isDark ? '#0c0c0e' : '#f3f4f6'}, transparent)` }}
+          className="absolute inset-y-0 right-0 w-16 md:w-32 pointer-events-none z-10"
+          style={{ background: `linear-gradient(to left, ${bg}, transparent)` }}
         />
       </div>
     </section>
   );
-};
+});

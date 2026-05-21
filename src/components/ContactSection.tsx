@@ -118,7 +118,7 @@ export const ContactSection = () => {
         className="relative z-10 w-full py-8 text-center border-t shrink-0"
         style={{ borderColor: inv.border }}
       >
-        <p className="text-xs font-mono tracking-wide" style={{ color: inv.textSecondary }}>
+        <p className="text-[8px] sm:text-[9px] md:text-[10px] font-mono tracking-[0.15em]" style={{ color: inv.textSecondary }}>
           {language === 'pt'
             ? '© 2026 Guilherme de Oliveira. Todos os direitos reservados.'
             : '© 2026 Guilherme de Oliveira. All rights reserved.'}

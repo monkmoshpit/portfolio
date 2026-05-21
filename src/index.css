@@ -135,9 +135,53 @@
   }
 }
 
-/* ─── MARQUEE: pause on hover ─── */
+/* ─── MARQUEE: GPU-smooth, mobile-first ─── */
+@keyframes marquee-left {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes marquee-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+.marquee-inner {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left 40s linear infinite;
+}
+
+.marquee-inner--right {
+  animation-name: marquee-right;
+}
+
 .marquee-row:hover .marquee-inner {
   animation-play-state: paused;
+}
+
+@media (max-width: 767px) {
+  .marquee-inner { animation-duration: 55s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-inner { animation-play-state: paused; }
+}
+
+/* ─── GRAIN: CSS-only drift (no JS animation loop) ─── */
+@keyframes grain-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(-10px, 10px, 0); }
+}
+
+.animate-grain-drift {
+  animation: grain-drift 8s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-grain-drift { animation: none; }
 }
 
 @keyframes wave-morph {

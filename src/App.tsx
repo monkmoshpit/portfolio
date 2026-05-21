@@ -15,7 +15,7 @@ import { ContactSection } from './components/ContactSection';
 import { AnimatedGrain } from './components/AnimatedGrain';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
-import devImg from './assets/dev.png';
+import { portfolioImages } from './assets/portfolioImages';
 
 const HeroSection = () => {
   const { language } = useLanguage();
@@ -116,8 +116,10 @@ const HeroSection = () => {
             }}
           >
             <img
-              src={devImg}
+              src={portfolioImages.dev}
               alt="Profile"
+              decoding="async"
+              fetchPriority="high"
               className="w-full h-full object-cover aspect-square"
               onError={e => {
                 e.currentTarget.src =

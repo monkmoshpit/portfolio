@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { allPortfolioImageUrls } from '../assets/portfolioImages';
+import { preloadImages } from '../utils/preloadImages';
 
 interface LoaderProps {
   onComplete: () => void;
@@ -8,6 +10,10 @@ interface LoaderProps {
 export const Loader = ({ onComplete }: LoaderProps) => {
   const [progress, setProgress] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+
+  useEffect(() => {
+    preloadImages(allPortfolioImageUrls);
+  }, []);
 
   useEffect(() => {
     // Simulate loading progress with variable increments to feel organic
